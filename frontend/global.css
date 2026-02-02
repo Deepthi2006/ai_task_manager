@@ -1,0 +1,241 @@
+/** @import must precede all other statements */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+
+    /**
+   * Tailwind CSS theme
+   * tailwind.config.ts expects the following color variables to be expressed as HSL values.
+   * A different format will require also updating the theme in tailwind.config.ts.
+  */
+    :root {
+        font-size: 22px;
+        --background: 210 40% 98%;
+        --foreground: 224 71% 4%;
+
+        --card: 0 0% 100%;
+        --card-foreground: 224 71% 4%;
+
+        --popover: 0 0% 100%;
+        --popover-foreground: 224 71% 4%;
+
+        --primary: 249 80% 54%;
+        --primary-foreground: 0 0% 100%;
+        --primary-50: 249 100% 97%;
+        --primary-100: 249 97% 94%;
+        --primary-200: 249 95% 88%;
+        --primary-300: 249 89% 78%;
+        --primary-400: 249 84% 64%;
+        --primary-500: 249 80% 54%;
+        --primary-600: 249 84% 44%;
+        --primary-700: 249 89% 34%;
+
+        --secondary: 209 89% 51%;
+        --secondary-foreground: 0 0% 100%;
+
+        --muted: 220 13% 91%;
+        --muted-foreground: 215 16% 47%;
+
+        --accent: 249 80% 54%;
+        --accent-foreground: 0 0% 100%;
+
+        --destructive: 0 84% 60%;
+        --destructive-foreground: 0 0% 100%;
+
+        --border: 220 13% 91%;
+        --input: 220 13% 91%;
+        --ring: 249 80% 54%;
+
+        --radius: 1.25rem;
+
+        --sidebar-background: 0 0% 98%;
+        --sidebar-foreground: 224 71% 4%;
+        --sidebar-primary: 249 80% 54%;
+        --sidebar-primary-foreground: 0 0% 100%;
+        --sidebar-accent: 249 100% 97%;
+        --sidebar-accent-foreground: 249 80% 54%;
+        --sidebar-border: 220 13% 91%;
+        --sidebar-ring: 249 80% 54%;
+
+        --success: 142 76% 36%;
+        --warning: 38 92% 50%;
+        --error: 0 84% 60%;
+    }
+
+    .dark {
+        --background: 224 71% 4%;
+        --foreground: 220 13% 91%;
+
+        --card: 224 71% 4%;
+        --card-foreground: 220 13% 91%;
+
+        --popover: 224 71% 4%;
+        --popover-foreground: 220 13% 91%;
+
+        --primary: 249 80% 54%;
+        --primary-foreground: 224 71% 4%;
+        --primary-50: 249 100% 97%;
+        --primary-100: 249 97% 94%;
+        --primary-200: 249 95% 88%;
+        --primary-300: 249 89% 78%;
+        --primary-400: 249 84% 64%;
+        --primary-500: 249 80% 54%;
+        --primary-600: 249 84% 44%;
+        --primary-700: 249 89% 34%;
+
+        --secondary: 209 89% 51%;
+        --secondary-foreground: 220 13% 91%;
+
+        --muted: 220 13% 20%;
+        --muted-foreground: 215 16% 70%;
+
+        --accent: 249 80% 54%;
+        --accent-foreground: 224 71% 4%;
+
+        --destructive: 0 84% 60%;
+        --destructive-foreground: 0 0% 100%;
+
+        --border: 220 13% 20%;
+        --input: 220 13% 20%;
+        --ring: 249 80% 54%;
+
+        --sidebar-background: 224 71% 4%;
+        --sidebar-foreground: 220 13% 91%;
+        --sidebar-primary: 249 80% 54%;
+        --sidebar-primary-foreground: 224 71% 4%;
+        --sidebar-accent: 249 89% 10%;
+        --sidebar-accent-foreground: 220 13% 91%;
+        --sidebar-border: 220 13% 20%;
+        --sidebar-ring: 249 80% 54%;
+
+        --success: 142 76% 36%;
+        --warning: 38 92% 50%;
+        --error: 0 84% 60%;
+    }
+}
+
+@layer base {
+    * {
+        @apply border-border;
+        transition: all 0.3s ease-in-out;
+    }
+
+    body {
+        @apply bg-background text-foreground;
+        font-family: 'Inter', sans-serif;
+        background-image:
+            radial-gradient(at 0% 0%, hsla(249, 80%, 54%, 0.03) 0, transparent 50%),
+            radial-gradient(at 50% 0%, hsla(209, 89%, 51%, 0.03) 0, transparent 50%),
+            radial-gradient(at 100% 0%, hsla(249, 80%, 54%, 0.03) 0, transparent 50%);
+        background-attachment: fixed;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    :where(p, span, li, h1, h2, h3, h4, h5, h6, a, button, label, td, th) {
+        overflow-wrap: anywhere;
+        word-break: break-word;
+    }
+
+    pre,
+    code {
+        overflow-x: auto;
+        white-space: pre;
+    }
+
+    /* Premium Scrollbar */
+    ::-webkit-scrollbar {
+        width: 10px;
+        height: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: hsl(var(--muted));
+        border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: hsl(var(--primary) / 0.3);
+        border-radius: 10px;
+        border: 2px solid hsl(var(--muted));
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: hsl(var(--primary) / 0.5);
+    }
+}
+
+/* Premium Card & Glassmorphism Utilities */
+@layer utilities {
+    .glass-card {
+        @apply bg-white/40 backdrop-blur-2xl border border-white/50;
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+    }
+
+    .premium-gradient {
+        @apply bg-gradient-to-br from-primary via-primary-500 to-blue-600;
+    }
+
+    .hover-lift {
+        @apply transition-transform duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-primary/20;
+    }
+
+    .glow-border {
+        position: relative;
+    }
+
+    .glow-border::after {
+        content: '';
+        position: absolute;
+        inset: -1px;
+        background: linear-gradient(45deg, hsl(var(--primary)), hsl(var(--secondary)), hsl(var(--primary)));
+        background-size: 200% 200%;
+        border-radius: inherit;
+        z-index: -1;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        animation: gradient-move 3s linear infinite;
+    }
+
+    .glow-border:hover::after {
+        opacity: 0.15;
+    }
+
+    @keyframes gradient-move {
+        0% {
+            background-position: 0% 50%;
+        }
+
+        50% {
+            background-position: 100% 50%;
+        }
+
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+
+    .premium-shadow {
+        box-shadow: 0 20px 50px -12px rgba(0, 0, 0, 0.1);
+    }
+
+    .floating {
+        animation: floating 3s ease-in-out infinite;
+    }
+
+    @keyframes floating {
+
+        0%,
+        100% {
+            transform: translateY(0);
+        }
+
+        50% {
+            transform: translateY(-10px);
+        }
+    }
+}
